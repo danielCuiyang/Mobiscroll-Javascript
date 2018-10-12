@@ -484,7 +484,6 @@
     var $ = mobiscroll.$;
 
     $(function () {
-        let a='Chinese'
         function rangeBasicInit() {
             var instance = mobiscroll.range('#rangeBasic-demo', {
                 theme: $('#theme').val(),                                     // Specify theme like: theme: 'ios' or omit setting to use default
@@ -493,8 +492,15 @@
                     // mode: $('#mode').val(),                                   // More info about mode: https://docs.mobiscroll.com/3-0-0_beta4/range#!opt-mode
                 defaultValue: [new Date(), new Date()],
                 onSet:function(event,inst){
-                    console.log(event)
+                    console.log(event.valueText)
+                    $('#calender').val(event.valueText);
+                    var form = document.getElementById('date-form');
+                    // 提交form:
                     console.log(inst)
+                    setTimeout(() => {
+                        form.submit();
+
+                    }, 5000);
                 } 
             });
 
@@ -524,8 +530,9 @@
     </div>
     <div class="demo-wrapper demo-wrapper-rangeBasic">
         <span  id="rangeBasic-demo">日历</span>
-        <input id="calender" placeholder="Please Select ..." />
-        
+        <form action="" id="date-form">
+                <input id="calender" placeholder="Please Select ..." />
+        </form>
     </div>
 </body>
 
